@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=/home/test_user/workspace
+DIR=/home/test_user/deepfacelab/workspace
 
 if [ -d "$DIR" ]; then
 	if [ "$(ls -A $DIR)" ]; then
