@@ -1,3 +1,3 @@
 #! /bin/bash
 
-/usr/bin/nividia-smi
+/usr/bin/nvidia-smi
