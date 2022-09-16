@@ -8,7 +8,7 @@ else
 	if [ -d "$DIR" ]; then
 		if [ "$(ls -A $DIR)" ]; then
 			tar -czf model.tar.gz workspace/model/*
-			ncftpput -u emilio ftp://$1 $2 model.tar.gz
+			ncftpput -u emilio $1 $2 model.tar.gz
 			rm model.tar.gz
 			echo "Done."
 		else
