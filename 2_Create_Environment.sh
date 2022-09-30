@@ -1,3 +1,6 @@
+#!/bin/sh
+#
+
 source $CONDA_PREFIX/etc/miniconda3/etc/profile.d/conda.sh
 
 # Create Environment
