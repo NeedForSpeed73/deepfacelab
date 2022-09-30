@@ -1,11 +1,9 @@
 #!/bin/bash
 #
 
-. $CONDA_PREFIX/etc/profile.d/conda.sh
-
 # Create Environment
 conda create -y -n deepfacelab -c main python=3.7 cudnn=8.2.1 cudatoolkit=11.3.1
-conda activate deepfacelab
+ls 
 git clone --depth 1 https://github.com/iperov/DeepFaceLab.git
 python -m pip install --no-input -r ./DeepFaceLab/requirements-cuda.txt
 conda clean -y -a
@@ -20,4 +18,4 @@ wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_l
 tar -xzf gdrive_2.1.1_linux_386.tar.gz
 rm gdrive_2.1.1_linux_386.tar.gz
 sudo apt update
-sudo apt install p7zip-full
+sudo apt -y install p7zip-full
