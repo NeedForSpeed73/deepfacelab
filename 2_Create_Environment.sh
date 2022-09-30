@@ -3,7 +3,7 @@
 
 # Create Environment
 conda create -y -n deepfacelab -c main python=3.7 cudnn=8.2.1 cudatoolkit=11.3.1
-
+conda activate deepfacelab
 git clone --depth 1 https://github.com/iperov/DeepFaceLab.git
 python -m pip install --no-input -r ./DeepFaceLab/requirements-cuda.txt
 conda clean -y -a
