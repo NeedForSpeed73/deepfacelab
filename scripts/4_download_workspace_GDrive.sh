@@ -6,8 +6,7 @@ else
 	./gdrive download $1
 	7z x workspace.7z
 	rm workspace.7z
-	cd workspace
-	../gdrive download $2
+	./gdrive download $2
 	7z x model.7z
 	rm model.7z
 fi
