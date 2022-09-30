@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-source $CONDA_PREFIX/etc/profile.d/conda.sh
+. $CONDA_PREFIX/etc/profile.d/conda.sh
 
 # Create Environment
 conda create -y -n deepfacelab -c main python=3.7 cudnn=8.2.1 cudatoolkit=11.3.1
