@@ -1,1 +1,13 @@
+#!/bin/bash
+#
 
+if [ "$#" -ne 1 ]; then
+  echo "Usage: 3_Add_Swap <swapfile dimension in Gigabytes>"
+else
+  echo "Please enter user password:"
+  read -s PASSWORD
+  echo $PASSWORD | sudo -S fallocate -l $1G /swapfile
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  fi
