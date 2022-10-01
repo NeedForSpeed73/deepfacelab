@@ -7,8 +7,11 @@ else
   echo "Please enter user password:"
   read -s PASSWORD
   echo $PASSWORD | sudo -S swapoff -a
+  if [ -f /swapfile ]; then 
+        sudo rm /swapfile
+  fi
   sudo fallocate -l $1G /swapfile
   sudo chmod 600 /swapfile
   sudo mkswap /swapfile
   sudo swapon /swapfile
-  fi
+fi
