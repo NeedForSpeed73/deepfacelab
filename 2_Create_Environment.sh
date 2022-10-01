@@ -2,11 +2,15 @@
 #
 
 CONDA_BASE=$(conda info --base)
+echo "Please enter user password:"
+read -s PASSWORD
 
 # Create Environment
 conda create -y -n deepfacelab -c main python=3.7 cudnn=8.2.1 cudatoolkit=11.3.1
 . $CONDA_BASE/etc/profile.d/conda.sh
+conda info --envs
 conda activate deepfacelab
+conda info --envs #check if env is activated
 git clone --depth 1 https://github.com/iperov/DeepFaceLab.git
 python -m pip install --no-input -r ./DeepFaceLab/requirements-cuda.txt
 conda clean -y -a
@@ -20,5 +24,6 @@ ln -s libcusolver.so.11.1.2.109 $CONDA_PREFIX_1/pkgs/cudatoolkit-11.3.1-h2bc3f7f
 wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 tar -xzf gdrive_2.1.1_linux_386.tar.gz
 rm gdrive_2.1.1_linux_386.tar.gz
-sudo apt update
+echo $PASSWORD | sudo -S apt update
 sudo apt -y install p7zip-full
+sudo apt-get -y clean
