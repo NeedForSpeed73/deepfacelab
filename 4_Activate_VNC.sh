@@ -13,3 +13,6 @@ echo 'xrdb $HOME/.Xresources' >> ~/.vnc/xstartup
 echo 'startxfce4 &' >> ~/.vnc/xstartup
 chmod +x ~/.vnc/xstartup
 vncserver
+
+# Clean packagers
+sudo apt-get -y clean
