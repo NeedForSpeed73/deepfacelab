@@ -8,6 +8,6 @@ print('Num GPUs Available: ', len(tf.config.list_physical_devices('GPU')))
 END
 )"
 
-        echo "$pythonval"
+        printf %"s\n" "$pythonval"
 }
 val_from_python

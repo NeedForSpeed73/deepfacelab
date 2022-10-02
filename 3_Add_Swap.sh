@@ -2,14 +2,17 @@
 #
 
 if [ "$#" -ne 1 ]; then
-  echo "Usage: 3_Add_Swap <swapfile dimension in Gigabytes>"
+  printf %"s\n" "Usage: 3_Add_Swap <swapfile dimension in Gigabytes>"
 else
-  sudo swapoff -a
-  if [ -f /swapfile ]; then 
+	printf %"s\n" "" "* Turning off existing swap" ""
+	sudo swapoff -a
+	if [ -f /swapfile ]; then 
+		printf %"s\n" "" "* Deleting existing swapfile" ""
         sudo rm /swapfile
-  fi
-  sudo fallocate -l $1G /swapfile
-  sudo chmod 600 /swapfile
-  sudo mkswap /swapfile
-  sudo swapon /swapfile
+	fi
+	printf %"s\n" "" "* Creating new swapfile and activating swap on it" ""
+	sudo fallocate -l $1G /swapfile
+	sudo chmod 600 /swapfile
+	sudo mkswap /swapfile
+	sudo swapon /swapfile
 fi

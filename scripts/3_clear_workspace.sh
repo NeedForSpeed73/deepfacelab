@@ -5,10 +5,10 @@ DIR=$HOME/deepfacelab/workspace
 if [ -d "$DIR" ]; then
 	if [ "$(ls -A $DIR)" ]; then
 	    rm -r $DIR
-	    echo "Done."
+	    printf %"s\n" "Done."
 	else
-	    echo "$DIR is empty"
+	    printf %"s\n" "$DIR is empty"
 	fi
 else
-	echo "$DIR  does not exist."
+	printf %"s\n" "$DIR  does not exist."
 fi
