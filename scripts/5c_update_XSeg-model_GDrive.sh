@@ -6,7 +6,7 @@ if [ "$#" -gt 1 ]; then
 else 
 	if [ -d "$DIR" ]; then
 		if [ "$(ls -A $DIR)" ]; then
-			7z a model_XSeg.7z workspace/model/XSeg_*
+			7z u model_XSeg.7z workspace/model/XSeg_*
 			if [ "$#" -eq 1 ]; then
 				MODEL_ID=$1
 				printf %"s" "Using given id: "

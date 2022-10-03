@@ -6,7 +6,7 @@ if [ "$#" -gt 1 ]; then
 else 
 	if [ -d "$DIR" ]; then
 		if [ "$(ls -A $DIR)" ]; then
-			7z a model_SAEHD.7z workspace/model/*SAEHD_*
+			7z u model_SAEHD.7z workspace/model/*SAEHD_*
 			if [ "$#" -eq 1 ]; then
 				MODEL_ID=$1
 				printf %"s" "Using given id: "
@@ -15,7 +15,7 @@ else
 			else
 				MODEL_ID=$(cat model_SAEHD.id)
 				printf %"s" "Using id: " $MODEL_ID
-				printf %"s\n" " from 'model_SAEHD.id' file"
+				printf %"s\n" " from 'model_SAEHDsc.id' file"
 			fi
 			./gdrive update $MODEL_ID model_SAEHD.7z
 			rm model_SAEHD.7z
