@@ -13,9 +13,9 @@ else
 				printf %"s\n" $MODEL_ID
 
 			else
-				MODEL_ID=$(cat model.id)
+				MODEL_ID=$(cat model_XSeg.id)
 				printf %"s" "Using id: " $MODEL_ID
-				printf %"s\n" " from 'model.id' file"
+				printf %"s\n" " from 'model_XSeg.id' file"
 			fi
 			./gdrive update $MODEL_ID model_XSeg.7z
 			rm model_XSeg.7z
