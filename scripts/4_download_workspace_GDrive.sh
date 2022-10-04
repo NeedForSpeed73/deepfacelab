@@ -3,7 +3,8 @@
 if [ "$#" -ne 3 ]; then
 	printf %"s\n" "Usage: 4_download_workspace_GDrive.sh <workspace.7z file_id> <model_XSeg.7z file_id> <model_SAEHD.7z file_id> from GDrive link."
 else
-	touch model.id
+	touch model_Xseg.id
+	touch model_SAEHD.id
 	printf %"s\n" $2 >> model_XSeg.id
 	printf %"s\n" $3 >> model_SAEHD.id
 	./gdrive download $1
