@@ -1,29 +1,27 @@
 #!/bin/bash
-DIR=$HOME/deepfacelab/workspace/model
+MODEL_DIR=$HOME/deepfacelab/workspace/model
+MODEL_ID_FILE=$HOME/deepfacelab/model_SAEHD.id
 
-if [ "$#" -gt 1 ]; then
-	printf %"s\n" "Usage: 7_upload_SAEHD-model_GDrive.sh model_SAEHD.7z [file ID on GDrive]"
+if [ "$#" -gt 0 ]; then
+	printf %"s\n" "Usage: 7_upload_SAEHD-model_GDrive.sh"
 else 
-	if [ -d "$DIR" ]; then
+	if [ -d "$MODEL_DIR" ]; then
 		if [ "$(ls -A $DIR)" ]; then
-			7z u model_SAEHD.7z workspace/model/*SAEHD_*
-			if [ "$#" -eq 1 ]; then
-				MODEL_ID=$1
-				printf %"s" "Using given id: "
-				printf %"s\n" $MODEL_ID
-
-			else
-				MODEL_ID=$(cat model_SAEHD.id)
+			if [ -f "$MODEL_ID_FILE" ]; then
+				7z u model_SAEHD.7z $MODEL_DIR/*SAEHD_*
+				MODEL_ID=$(cat $MODEL_ID_FILE)
 				printf %"s" "Using id: " $MODEL_ID
-				printf %"s\n" " from 'model_SAEHDsc.id' file"
+				printf %"s\n" " from '$MODEL_ID_FILE' file"
+				./gdrive update $MODEL_ID model_SAEHD.7z
+				rm model_SAEHD.7z
+				printf %"s\n" "Done."
+			else
+				printf %"s\n" "$MODEL_ID_FILE  doesn't exist."
 			fi
-			./gdrive update $MODEL_ID model_SAEHD.7z
-			rm model_SAEHD.7z
-			printf %"s\n" "Done."
 		else
-			printf %"s\n" "$DIR is empty"
+			printf %"s\n" "$MODEL_DIR is empty"
 		fi
 	else
-		printf %"s\n" "$DIR  does not exist."
+		printf %"s\n" "$MODEL_DIR does not exist."
 	fi  
 fi

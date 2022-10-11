@@ -1,35 +1,47 @@
 #!/bin/bash
-DIR=$HOME/deepfacelab/workspace/model
+MODEL_DIR=$HOME/deepfacelab/workspace/model
+MODEL_ID_FILE=$HOME/deepfacelab/model_XSeg.id
+WORKSPACE_DIR=$HOME/deepfacelab/workspace
+WORKSPACE_ID_FILE=$HOME/deepfacelab/workspace.id
 
 if [ "$#" -gt 0 ]; then
 	printf %"s\n" "Usage: 5c_upload_XSeg-model_GDrive.sh"
 else 
-	if [ -d "$DIR" ]; then
-		if [ "$(ls -A $DIR)" ]; then
-			7z u model_XSeg.7z workspace/model/XSeg_*
-			MODEL_ID=$(cat model_XSeg.id)
-			printf %"s" "Using id: " $MODEL_ID
-			printf %"s\n" " from 'model_XSeg.id' file"
-			read -p "Do you wanna change ID (S/N)?" -n 1 -r
-			if [[ $REPLY =~ ^[Ss]$ ]]; then
-				read -p "Enter new ID:" MODEL_ID
+	if [ -d "$MODEL_DIR" ]; then
+		if [ "$(ls -A $MODEL_DIR)" ]; then
+			if  [ -f "$MODEL_ID_FILE" ]; then
+				7z u model_XSeg.7z $MODEL_DIR/XSeg_*
+				MODEL_ID=$(cat $MODEL_ID_FILE)
+				printf %"s" "Using id: " $MODEL_ID
+				printf %"s\n" " from $MODEL_ID_FILE file"
+				./gdrive update $MODEL_ID model_XSeg.7z
+				rm model_XSeg.7z
+			else
+				printf %"s\n" "$MODEL_ID_FILE  doesn't exist."
 			fi
+		else
+			printf %"s\n" "$MODEL_DIR is empty."
 		fi
-		./gdrive update $MODEL_ID model_XSeg.7z
-		rm model_XSeg.7z
-		read -p "Do you want to upload data_src and data_dst to Google Drive (Y/N)?" -n 1 -r
-		if [[ $REPLY =~ ^[Ss]$ ]]; then
-			7z u workspace.7z workspace/data_*/*
-			read -p "Do you wanna change ID (S/N)?" -n 1 -r
-			if [[ $REPLY =~ ^[Ss]$ ]]; then
-				read -p "Enter new ID:" WORKSPACE_ID
-			fi
-			./gdrive update $WORKSPACE_ID workspace.7z
-		fi
-		printf %"s\n" "Done."
 	else
-		printf %"s\n" "$DIR is empty"
+		printf %"s\n" "$MODEL_DIR  does not exist."
 	fi
-else
-	printf %"s\n" "$DIR  does not exist."
+	if [ -d "$WORKSPACE_DIR" ]; then
+		if [ "$(ls -A $WORKSPACE_DIR)" ]; then
+			if [ -f "$WORKSPACE_ID_FILE" ]; then
+				7z u -r workspace.7z $WORKSPACE_DIR/data_*/
+				WORKSPACE_ID=$(cat $WORKSPACE_ID_FILE)
+				printf %"s" "Using id: " $WORKSPACE_ID
+				printf %"s\n" " from $WORKSPACE_ID_FILE file"
+				./gdrive update $WORKSPACE_ID workspace.7z
+				rm workspace.7z
+			else
+				printf %"s\n" "$WORKSPACE_ID_FILE  doesn't exist."
+			fi
+		else
+			printf %"s\n" "$WORKSPACE_DIR is empty."
+		fi
+	else
+		printf %"s\n" "$WORKSPACE_DIR does not exist."
+	fi
+		printf %"s\n" "Done."
 fi  
