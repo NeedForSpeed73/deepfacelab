@@ -10,7 +10,7 @@ else
 	if [ -d "$MODEL_DIR" ]; then
 		if [ "$(ls -A $MODEL_DIR)" ]; then
 			if  [ -f "$MODEL_ID_FILE" ]; then
-				$N_FILES=`ls -1q workspace/model/XSeg_* | wc -l`
+				N_FILES=`ls -1q workspace/model/XSeg_* | wc -l`
 				zip model_XSeg.zip $MODEL_DIR/XSeg_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				MODEL_ID=$(cat $MODEL_ID_FILE)
 				printf %"s" "Using id: " $MODEL_ID
@@ -29,7 +29,7 @@ else
 	if [ -d "$WORKSPACE_DIR" ]; then
 		if [ "$(ls -A $WORKSPACE_DIR)" ]; then
 			if [ -f "$WORKSPACE_ID_FILE" ]; then
-				$N_FILES=`ls -1q workspace/data_*/* | wc -l`
+				N_FILES=`ls -1q workspace/data_*/* | wc -l`
 				zip -r workspace.zip $WORKSPACE_DIR/data_*/* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				WORKSPACE_ID=$(cat $WORKSPACE_ID_FILE)
 				printf %"s" "Using id: " $WORKSPACE_ID
