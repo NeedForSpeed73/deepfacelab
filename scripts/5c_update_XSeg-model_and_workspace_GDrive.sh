@@ -10,7 +10,7 @@ else
 	if [ -d "$MODEL_DIR" ]; then
 		if [ "$(ls -A $MODEL_DIR)" ]; then
 			if  [ -f "$MODEL_ID_FILE" ]; then
-				7z u model_XSeg.7z $MODEL_DIR/XSeg_*
+				7z u -r model_XSeg.7z $MODEL_DIR/XSeg_*
 				MODEL_ID=$(cat $MODEL_ID_FILE)
 				printf %"s" "Using id: " $MODEL_ID
 				printf %"s\n" " from $MODEL_ID_FILE file"
