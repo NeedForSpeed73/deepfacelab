@@ -47,5 +47,5 @@ else
 	else
 		printf %"s\n" "$WORKSPACE_DIR does not exist."
 	fi
-		printf %"s\n" "Done."
+	printf %"s\n" "Done."
 fi  
