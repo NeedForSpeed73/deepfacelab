@@ -18,7 +18,7 @@ printf %"s\n" 'startxfce4 &' >> ~/.vnc/xstartup
 chmod +x ~/.vnc/xstartup
 
 printf %"s\n" "" "* Launching VCN server" ""
-vncserver
+vncserver -geometry 1280x1024
 
 printf %"s\n" "" "* Cleaning Up" ""
 # Clean packagers
