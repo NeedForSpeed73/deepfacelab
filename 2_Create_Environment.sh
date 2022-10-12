@@ -1,15 +1,15 @@
 #!/bin/bash
 #
 
-#Install gdrive e 7z
+#Install gdrive e zip
 printf %"s\n" "" "* Installing gdrive (https://github.com/prasmussen/gdrive)" ""
 wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
 tar -xzf gdrive_2.1.1_linux_386.tar.gz
 rm gdrive_2.1.1_linux_386.tar.gz
 
-printf %"s\n" "" "* Installing 7z (package p7zip-full)" ""
+printf %"s\n" "" "* Installing zip (package zip and unzip)" ""
 sudo -S apt update
-sudo apt -y install p7zip-full
+sudo apt -y install zip unzip
 
 CONDA_BASE=$(conda info --base)
 
