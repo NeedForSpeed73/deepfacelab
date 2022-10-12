@@ -8,6 +8,7 @@ else
 	if [ -d "$MODEL_DIR" ]; then
 		if [ "$(ls -A $DIR)" ]; then
 			if [ -f "$MODEL_ID_FILE" ]; then
+				printf %"s\n" "Creating model_SAEHD.zip"
 				N_FILES=`ls -1q workspace/model/*SAEHD_* | wc -l`
 				zip model_SAEHD.zip $MODEL_DIR/*SAEHD_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				MODEL_ID=$(cat $MODEL_ID_FILE)
