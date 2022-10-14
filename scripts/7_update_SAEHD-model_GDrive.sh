@@ -1,5 +1,4 @@
 #!/bin/bash
-MODEL_DIR=$HOME/deepfacelab/workspace/model
 MODEL_ID_FILE=$HOME/deepfacelab/model_SAEHD.id
 
 if [ "$#" -gt 0 ]; then
@@ -10,7 +9,7 @@ else
 			if [ -f "$MODEL_ID_FILE" ]; then
 				printf %"s\n" "Creating model_SAEHD.zip"
 				N_FILES=`ls -1q workspace/model/*SAEHD_* | wc -l`
-				zip model_SAEHD.zip $MODEL_DIR/*SAEHD_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
+				zip model_SAEHD.zip workspace/model/*SAEHD_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				MODEL_ID=$(cat $MODEL_ID_FILE)
 				printf %"s" "Using id: " $MODEL_ID
 				printf %"s\n" " from '$MODEL_ID_FILE' file"

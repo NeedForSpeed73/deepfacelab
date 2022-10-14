@@ -1,7 +1,5 @@
 #!/bin/bash
-MODEL_DIR=$HOME/deepfacelab/workspace/model
 MODEL_ID_FILE=$HOME/deepfacelab/model_XSeg.id
-WORKSPACE_DIR=$HOME/deepfacelab/workspace
 WORKSPACE_ID_FILE=$HOME/deepfacelab/workspace.id
 
 if [ "$#" -gt 0 ]; then
@@ -12,7 +10,7 @@ else
 			if  [ -f "$MODEL_ID_FILE" ]; then
 				printf %"s\n" "Creating model_XSeg.zip"
 				N_FILES=`ls -1q workspace/model/XSeg_* | wc -l`
-				zip model_XSeg.zip $MODEL_DIR/XSeg_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
+				zip model_XSeg.zip workspace/model/XSeg_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				MODEL_ID=$(cat $MODEL_ID_FILE)
 				printf %"s" "Using id: " $MODEL_ID
 				printf %"s\n" " from $MODEL_ID_FILE file"
@@ -32,7 +30,7 @@ else
 			if [ -f "$WORKSPACE_ID_FILE" ]; then
 				printf %"s\n" "Creating workspace.zip"
 				N_FILES=`ls -1q workspace/data_*/* | wc -l`
-				zip -r workspace.zip $WORKSPACE_DIR/data_*/* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
+				zip -r workspace.zip workspace/data_*/* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
 				WORKSPACE_ID=$(cat $WORKSPACE_ID_FILE)
 				printf %"s" "Using id: " $WORKSPACE_ID
 				printf %"s\n" " from $WORKSPACE_ID_FILE file"

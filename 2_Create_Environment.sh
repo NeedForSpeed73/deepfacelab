@@ -11,6 +11,16 @@ printf %"s\n" "" "* Installing zip (package zip and unzip)" ""
 sudo -S apt update
 sudo apt -y install zip unzip
 
+#Install Nvidia Proprietary Drivers if asked
+read -p "Do you want to install Nvidia Proprietary Drivers? (Y/N)" -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	read -p "Enter Drivers File Google Drive ID: " DRIVERS_ID
+	./gdrive download $DRIVERS_ID
+	DRIVERS_FILENAME=`ls NVIDIA-Linux*`
+	sh ./$DRIVERS_FILENAME
+	rm $DRIVERS_FILENAME
+fi
+
 CONDA_BASE=$(conda info --base)
 
 # Create Environment
