@@ -18,7 +18,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	read -e -p "Enter Drivers File Google Drive ID: " DRIVERS_ID
 	./gdrive download $DRIVERS_ID
 	DRIVERS_FILENAME=`ls NVIDIA-Linux*`
-	sh ./$DRIVERS_FILENAME
+	sudo sh ./$DRIVERS_FILENAME
 	rm $DRIVERS_FILENAME
 fi
 
