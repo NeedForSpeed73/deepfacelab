@@ -11,7 +11,10 @@ printf %"s\n" "" "* Installing zip (package zip and unzip)" ""
 sudo -S apt update
 sudo apt -y install zip unzip
 
-#Install Nvidia Proprietary Drivers and FFMPEG if asked
+printf %"s\n" "" "* Installing FFMPEG (package ffmpeg)" ""
+sudo apt -y install ffmpeg
+
+#Install Nvidia Proprietary Drivers
 read -p "Do you want to install Nvidia Proprietary Drivers? (Y/N)" -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	printf %"s\n" "" "* Installing Nvidia Proprietary Drivers" ""
@@ -20,11 +23,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	DRIVERS_FILENAME=`ls NVIDIA-Linux*`
 	sudo sh ./$DRIVERS_FILENAME
 	rm $DRIVERS_FILENAME
-fi
-read -p "Do you want to install FFMPEG? (Y/N)" -r
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-	printf %"s\n" "" "* Installing FFMPEG" ""
-	sudo apt install ffmpeg
 fi
 
 CONDA_BASE=$(conda info --base)
