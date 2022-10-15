@@ -11,15 +11,20 @@ printf %"s\n" "" "* Installing zip (package zip and unzip)" ""
 sudo -S apt update
 sudo apt -y install zip unzip
 
-#Install Nvidia Proprietary Drivers if asked
-read -p "Do you want to install Nvidia Proprietary Drivers? (Y/N)" -n 1 -r
-printf %"s\n" "" "* Installing Nvidia Proprietary Drivers" ""
+#Install Nvidia Proprietary Drivers and FFMPEG if asked
+read -p "Do you want to install Nvidia Proprietary Drivers? (Y/N)" -r
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+	printf %"s\n" "" "* Installing Nvidia Proprietary Drivers" ""
 	read -e -p "Enter Drivers File Google Drive ID: " DRIVERS_ID
 	./gdrive download $DRIVERS_ID
 	DRIVERS_FILENAME=`ls NVIDIA-Linux*`
 	sudo sh ./$DRIVERS_FILENAME
 	rm $DRIVERS_FILENAME
+fi
+read -p "Do you want to install FFMPEG? (Y/N)" -r
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	printf %"s\n" "" "* Installing FFMPEG" ""
+	sudo apt install ffmpeg
 fi
 
 CONDA_BASE=$(conda info --base)
