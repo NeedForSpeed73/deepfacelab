@@ -1,3 +1,23 @@
 #!/bin/bash
 #
 
+WORKSPACE_DIR=$HOME/deepfacelab/workspace
+
+if [ "$#" -gt 0 ]; then
+	printf %"s\n" "Usage: 9b_upload_whole_workspace.sh"
+else 
+	if [ -d "$WORKSPACE_DIR" ]; then
+		if [ "$(ls -A $WORKSPACE_DIR)" ]; then
+			printf %"s\n" "Creating workspace.zip"
+			N_FILES=`ls -1q workspace/* | wc -l`
+			zip model_SAEHD.zip workspace/* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
+			./gdrive upload workspace.zip
+			rm workspace.zip
+			printf %"s\n" "Done."
+		else
+			printf %"s\n" "$WORKSPACE_DIR is empty"
+		fi
+	else
+		printf %"s\n" "$WORKSPACE_DIR does not exist."
+	fi  
+fi
