@@ -38,7 +38,7 @@ python -m pip install --no-input -r ./DeepFaceLab/requirements-cuda.txt
 
 # Fix Permissions and libraries
 printf %"s\n" "" "* Making scripts executable and fixing libraries permissions" ""
-chmod +x scripts/*
+chmod -R +x scripts/*
 ln -s libcusolver.so.11.1.2.109 $CONDA_PREFIX_1/envs/deepfacelab/lib/libcusolver.so.10
 ln -s libcusolver.so.11.1.2.109 $CONDA_PREFIX_1/pkgs/cudatoolkit-11.3.1-h2bc3f7f_2/lib/libcusolver.so.10
 
