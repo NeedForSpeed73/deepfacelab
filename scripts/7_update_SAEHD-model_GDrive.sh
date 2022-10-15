@@ -13,6 +13,8 @@ else
 				read -e -p "Enter <model_SAEHD.zip> Google Drive ID: " MODEL_SAEHD_ID
 				touch $MODEL_SAEHD_ID
 				echo $MODEL_SAEHD_ID > $MODEL_SAEHD_ID_FILE
+			else
+				MODEL_SAEHD_ID=$(<$MODEL_SAEHD_ID_FILE)
 			fi
 			printf %"s\n" "Creating model_SAEHD.zip"
 			N_FILES=`ls -1q workspace/model/*SAEHD_* | wc -l`
