@@ -54,11 +54,11 @@ else
 				./gdrive update $MODEL_XSEG_ID model_XSeg.zip
 			fi
 			rm model_XSeg.zip
+			printf %"s\n" "Done."
 		else
 			printf %"s\n" "$MODEL_XSEG_DIR is empty."
 		fi
 	else
 		printf %"s\n" "$MODEL_XSEG_DIR does not exist."
 	fi
-	printf %"s\n" "Done."
 fi  
