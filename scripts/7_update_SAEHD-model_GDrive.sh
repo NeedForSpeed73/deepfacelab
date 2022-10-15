@@ -27,11 +27,11 @@ else
 				./gdrive update $MODEL_SAEHD_ID model_SAEHD.zip
 			fi
 			rm model_SAEHD.zip
+			printf %"s\n" "Done."
 		else
 			printf %"s\n" "$MODEL_DIR is empty"
 		fi
 	else
 		printf %"s\n" "$MODEL_DIR does not exist."
 	fi  
-	printf %"s\n" "Done."
 fi
