@@ -14,6 +14,8 @@ else
 				read -e -p "Enter <model_XSeg.zip> Google Drive ID: " MODEL_XSEG_ID
 				touch $MODEL_XSEG_ID_FILE
 				echo $MODEL_XSEG_ID > $MODEL_XSEG_ID_FILE
+			else
+				MODEL_XSEG_ID=$(<$MODEL_XSEG_ID_FILE)
 			fi
 			printf %"s\n" "Creating model_XSeg.zip"
 			N_FILES=`ls -1q workspace/model/XSeg_* | wc -l`
@@ -33,6 +35,8 @@ else
 				read -e -p "Enter <workspace.zip> Google Drive ID: " WORKSPACE_ID
 				touch $WORKSPACE_ID
 				echo $WORKSPACE_ID > $WORKSPACE_ID_FILE
+			else
+				WORKSPACE_ID=$(<$WORKSPACE_ID_FILE)
 			fi
 			printf %"s\n" "Creating workspace.zip"
 			N_FILES=`ls -1q workspace/data_*/* | wc -l`
