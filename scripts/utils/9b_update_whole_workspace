@@ -6,6 +6,8 @@ WORKSPACE_ID_FILE=$WORKSPACE_DIR/workspace.id
 if [ "$#" -gt 0 ]; then
 	printf %"s\n" "Usage: 9b_update_whole_workspace.sh"
 else 
+	FREE_SPACE=df -H | grep -wE '/' | awk -v N=4 '{print substr($N, 1, length($N)-1)}'
+	echo $FREE_SPACE
 	if [ -d "$WORKSPACE_DIR" ]; then
 		if [ "$(ls -A $WORKSPACE_DIR)" ]; then
 			if [ -f "$WORKSPACE_ID_FILE" ]; then
