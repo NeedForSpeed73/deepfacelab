@@ -34,6 +34,8 @@ printf %"s\n" "" "* Downloading DeepFaceLab (https://github.com/iperov/DeepFaceL
 git clone --depth 1 https://github.com/iperov/DeepFaceLab.git
 python -m pip install --no-input -r ./DeepFaceLab/requirements-cuda.txt
 
+pip install gdown
+
 # Fix Permissions and libraries
 printf %"s\n" "" "* Making scripts executable and fixing libraries permissions" ""
 chmod -R +x scripts/*
