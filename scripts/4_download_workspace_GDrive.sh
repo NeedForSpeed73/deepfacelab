@@ -25,15 +25,15 @@ else
 		echo $MODEL_SAEHD_ID > $MODEL_SAEHD_ID_FILE
 		printf %"s\n"
 	fi
-	./gdrive download $WORKSPACE_ID
+	gdown --id $WORKSPACE_ID
 	N_FILES=`unzip -l workspace.zip | tail -n 1 | xargs echo -n | cut -d' ' -f2`
 	unzip -o workspace.zip | tqdm --desc extracted --unit files --unit_scale --total $N_FILES > /dev/null
 	rm workspace.zip
-	./gdrive download $MODEL_XSEG_ID
+	gdown --id $MODEL_XSEG_ID
 	N_FILES=`unzip -l model_XSeg.zip | tail -n 1 | xargs echo -n | cut -d' ' -f2`
 	unzip -o model_XSeg.zip | tqdm --desc extracted --unit files --unit_scale --total $N_FILES > /dev/null
 	rm model_XSeg.zip
-	./gdrive download $MODEL_SAEHD_ID
+	gdown --id $MODEL_SAEHD_ID
 	N_FILES=`unzip -l model_SAEHD.zip | tail -n 1 | xargs echo -n | cut -d' ' -f2`
 	unzip -o model_SAEHD.zip | tqdm --desc extracted --unit files --unit_scale --total $N_FILES > /dev/null
 	rm model_SAEHD.zip
