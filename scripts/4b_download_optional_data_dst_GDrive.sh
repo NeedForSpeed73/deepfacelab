@@ -16,7 +16,7 @@ else
 	NEEDED_SPACE=$(($FILE_SIZE * 3))
 	FREE_SPACE=$(df -H | grep -wE '/' | awk -v N=4 '{print substr($N, 1, length($N)-1)}')
 	if [ $FREE_SPACE -gt $NEEDED_SPACE ]; then
-	 	./gdrive download $DATA_DST_ID
+	 	gdown --id $DATA_DST_ID
 	 	N_FILES=`unzip -l data_dst.zip | tail -n 1 | xargs echo -n | cut -d' ' -f2`
 	 	unzip -o data_dst.zip | tqdm --desc extracted --unit files --unit_scale --total $N_FILES > /dev/null
 	 	rm data_dst.zip
