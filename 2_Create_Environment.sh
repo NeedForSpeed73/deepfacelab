@@ -1,12 +1,7 @@
 #!/bin/bash
 #
 
-#Install gdrive e zip
-printf %"s\n" "" "* Installing gdrive (https://github.com/prasmussen/gdrive)" ""
-wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
-tar -xzf gdrive_2.1.1_linux_386.tar.gz
-rm gdrive_2.1.1_linux_386.tar.gz
-
+#Install zip and FFMPEG
 printf %"s\n" "" "* Installing zip (package zip and unzip)" ""
 sudo -S apt update
 sudo apt -y install zip unzip
