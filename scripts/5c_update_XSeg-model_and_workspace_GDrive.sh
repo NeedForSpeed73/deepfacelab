@@ -22,7 +22,7 @@ else
 			printf %"s\n" "Creating workspace.zip"
 			N_FILES=`ls -1q workspace/data_*/* | wc -l`
 			zip -r workspace.zip workspace/data_*/* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
-			if [[ WORKSPACE_ID_LINK == "new" ]]; then
+			if [[ WORKSPACE_LINK == "new" ]]; then
 				printf %"s\n" "Creating new GDrive file workspace.zip in main directory."
 				./gdrive upload workspace.zip
 				
