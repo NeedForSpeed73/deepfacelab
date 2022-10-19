@@ -8,7 +8,8 @@ if [ "$#" -gt 0 ]; then
 	printf %"s\n" "Usage: 4_download_workspace_GDrive.sh."
 else
 	if [ ! -f "$WORKSPACE_ID_FILE" ]; then 
-		read -e -p "Enter <workspace.zip> Google Drive ID: " WORKSPACE_ID
+		read -e -p "Enter <workspace.zip> Google Drive Link: " WORKSPACE_LINK
+		WORKSPACE_ID="$(echo "$WORKSPACE_LINK" | awk -F"/" '{print $6}')"
 		touch $WORKSPACE_ID_FILE
 		echo $WORKSPACE_ID > $WORKSPACE_ID_FILE
 		printf %"s\n"
@@ -16,7 +17,8 @@ else
 		WORKSPACE_ID=$(<$WORKSPACE_ID_FILE)
 	fi
 	if [ ! -f "$MODEL_XSEG_ID_FILE" ]; then 
-		read -e -p "Enter <model_XSeg.zip> Google Drive ID: " MODEL_XSEG_ID
+		read -e -p "Enter <model_XSeg.zip> Google Drive Link: " MODEL_XSEG_LINK
+		MODEL_XSEG_ID="$(echo "$MODEL_XSEG_LINK" | awk -F"/" '{print $6}')"
 		touch $MODEL_XSEG_ID_FILE
 		echo $MODEL_XSEG_ID > $MODEL_XSEG_ID_FILE
 		printf %"s\n"
@@ -24,7 +26,8 @@ else
 		MODEL_XSEG_ID=$(<$MODEL_XSEG_ID_FILE)
 	fi
 	if [ ! -f "$MODEL_SAEHD_ID_FILE" ]; then 
-		read -e -p "Enter <model_SAEHD.zip> Google Drive ID: " MODEL_SAEHD_ID
+		read -e -p "Enter <model_SAEHD.zip> Google Drive Link: " MODEL_SAEHD_LINK
+		MODEL_SAEHD_ID="$(echo "$MODEL_SAEHD_LINK" | awk -F"/" '{print $6}')"
 		touch $MODEL_SAEHD_ID_FILE
 		echo $MODEL_SAEHD_ID > $MODEL_SAEHD_ID_FILE
 		printf %"s\n"
