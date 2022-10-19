@@ -12,13 +12,15 @@ else
 			if [ -f "$MODEL_SAEHD_ID_FILE" ]; then
 				MODEL_SAEHD_ID=$(<$MODEL_SAEHD_ID_FILE)
 			else
-				read -e -p "Enter <model_SAEHD.zip> Google Drive ID or "new" for new file: " MODEL_SAEHD_ID
+				read -e -p "Enter <model_SAEHD.zip> Google Drive ID or "new" for new file: " MODEL_SAEHD_LINK
+				if [[ MODEL_SAEHD_LINK != "new" ]]; then
+					MODEL_SAEHD_ID="$(echo "$MODEL_SAEHD_LINK" | awk -F"/" '{print $6}')"
 				printf %"s\n"
 			fi
 			printf %"s\n" "Creating model_SAEHD.zip"
 			N_FILES=`ls -1q workspace/model/*SAEHD_* | wc -l`
 			zip model_SAEHD.zip workspace/model/*SAEHD_* | tqdm --desc added --unit files --unit_scale --total $N_FILES > /dev/null
-			if [[ MODEL_SAEHD_ID == "new" ]]; then
+			if [[ MODEL_SAEHD_LINK == "new" ]]; then
 				printf %"s\n" "Creating new GDrive file model_SAEHD.zip in main directory."
 				./gdrive upload model_SAEHD.zip
 				
