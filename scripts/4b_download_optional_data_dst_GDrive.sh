@@ -6,7 +6,8 @@ if [ "$#" -gt 0 ]; then
 	printf %"s\n" "Usage: 4b_download_optional_data_dst_GDrive.sh."
 else
 	if [ ! -f "$DATA_DST_ID_FILE" ]; then 
-		read -e -p "Enter <data_dst.zip> Google Drive ID: " DATA_DST_ID
+		read -e -p "Enter <data_dst.zip> Google Drive ID: " DATA_DST_LINK
+		DATA_DST_ID="$(echo "$DATA_DST_LINK" | awk -F"/" '{print $6}')"
 		touch $DATA_DST_ID_FILE
 		echo $DATA_DST_ID > $DATA_DST_ID_FILE
 	else
